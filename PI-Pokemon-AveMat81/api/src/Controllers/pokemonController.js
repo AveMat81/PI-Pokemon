@@ -6,10 +6,12 @@ const URL = 'https://pokeapi.co/api/v2/pokemon'
 
 const getAllPokemons = async (req, res)=>{
     try {
-        const {data} = await axios(`${URL}/?limit=60`)
+        const {data} = await axios(`${URL}/?limit=12`)
          const  response = data.results
          const pokemons = response.map(async(element)=>{
-            const {data} = await axios(`${URL}/${element.name}`)  
+            const {data} = await axios(`${URL}/${element.name}`)
+            const tipos = [{nombre: data.types[0].type.name}]
+            if(data.types[1]) tipos.push({nombre: data.types[1].type.name})  
             return {
                 id: data.id,
                 nombre: data.name,
@@ -19,11 +21,13 @@ const getAllPokemons = async (req, res)=>{
                 defensa: data.stats[2].base_stat,
                 velocidad:data.stats[5].base_stat,
                 altura: data.height,
-                peso: data.weight
+                peso: data.weight,
+                types: tipos
             }
          })
          const allPokemons = await Promise.all(pokemons)
-         res.status(200).json(allPokemons)
+         const pokes = await Promise.all([allPokemons, Pokemon.findAll({include: Types})])
+         res.status(200).json(pokes)
     } catch (error) {
         res.status(400).json(error.message)
     }
@@ -89,6 +93,7 @@ const getPokemonByName = async (req, res)=>{
             velocidad:data.stats[5].base_stat,
             altura: data.height,
             peso: data.weight,
+            tipos: data.types[1]? data.types[0].type.name +' - '+ data.types[1].type.name : data.types[0].type.name
            
          }
          return res.status(200).json(pokemon)
@@ -104,9 +109,9 @@ const getPokemonByName = async (req, res)=>{
 
 
 const postPokemon = async (req, res) => {
-    const {nombre, imagen, vida, ataque, defensa, velocidad, altura, peso } = req.body;
+    const {tipos, nombre, imagen, vida, ataque, defensa, velocidad, altura, peso } = req.body;
     try {
-        await Pokemon.create({
+       const newPokemon = await Pokemon.create({
             nombre,
             imagen,
             vida,
@@ -114,8 +119,9 @@ const postPokemon = async (req, res) => {
             defensa,
             velocidad,
             altura,
-            peso 
+            peso
         });
+        await newPokemon.addTypes(tipos)
         return res.status(201).send('Pokémon creado exitosamente');
     } catch (error) {
         return res.status(400).send('Error al crear el Pokémon' + error.message);
