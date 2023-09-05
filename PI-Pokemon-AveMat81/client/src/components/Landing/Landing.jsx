@@ -1,12 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import styles from './Landing.module.css'
+
 
 const Landing = ()=> {
     return(
-        <div>
-            <h1>Bienvenidos a mi APP POKEMON</h1>
+        <div className={styles.background}>            
+         
             <NavLink to='/home'>
-                <button>Inicio</button>
+              <button className={styles.landing}>Inicio</button>
             </NavLink>
+
         </div>
     )
 };
