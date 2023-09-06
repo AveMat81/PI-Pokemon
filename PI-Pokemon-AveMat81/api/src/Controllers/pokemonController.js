@@ -77,11 +77,13 @@ const getPokemonByName = async (req, res)=>{
     let {nombre} = req.query
      nombre = nombre.toLowerCase()
     try {
-        const pokemon = await Pokemon.findOne({where: {nombre: nombre}});
+        const pokemon = await Pokemon.findOne({where: {nombre: nombre}, include: Types});
        if(pokemon){
            return res.status(200).json(pokemon)
         }
          const {data} = await axios(`${URL}/${nombre}`)
+         const tipos = [{nombre: data.types[0].type.name}]
+            if(data.types[1]) tipos.push({nombre: data.types[1].type.name})
         if(data){
          const pokemon = {
             id: data.id,
@@ -93,7 +95,7 @@ const getPokemonByName = async (req, res)=>{
             velocidad:data.stats[5].base_stat,
             altura: data.height,
             peso: data.weight,
-            tipos: data.types[1]? data.types[0].type.name +' - '+ data.types[1].type.name : data.types[0].type.name
+            types: tipos
            
          }
          return res.status(200).json(pokemon)

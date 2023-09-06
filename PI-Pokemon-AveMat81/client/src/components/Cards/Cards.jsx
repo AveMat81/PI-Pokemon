@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const Cards = ()=>{
   const allPokemons = useSelector(state=>state.filterPokemon)
-    
+  
     return(
         <div className={styles.cardGrid}>
             {allPokemons.map(pokemon=>{
