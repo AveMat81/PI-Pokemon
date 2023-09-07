@@ -1,8 +1,8 @@
 const { Pokemon, Types } = require('../db');
 
-
 const axios = require('axios');
 const URL = 'https://pokeapi.co/api/v2/pokemon'
+
 
 const getAllPokemons = async (req, res)=>{
     try {
