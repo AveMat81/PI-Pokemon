@@ -9,7 +9,7 @@ const Nav = ()=> {
             <SearchBar/>
             </div>
             <NavLink to='/home'>
-                <button className={styles.homebutton}>Home</button>
+                <button className={styles.homebutton}>Inicio</button>
             </NavLink>
 
             <NavLink to='/create'>

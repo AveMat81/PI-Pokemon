@@ -59,7 +59,7 @@ const Home = ()=> {
                 <option value="D">Z-A</option>
             </select>
 
-            <label htmlFor="tipos">seleccionar por tipo </label> 
+            <label htmlFor="tipos">Seleccionar por tipo </label> 
             <select id="tipos" onChange={handleTipos}>
              <option value="I">Seleccionar</option>
                    { types.map((tipo)=> {
@@ -69,7 +69,7 @@ const Home = ()=> {
                     })}            
             </select>
 
-            <label htmlFor="origen">seleccionar origen data </label> 
+            <label htmlFor="origen">Seleccionar origen data </label> 
             <select id="origen" onChange={handleOrigen}>
                 <option value="I">Seleccionar</option>
                 <option value="API">API</option>

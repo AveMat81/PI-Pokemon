@@ -4,3 +4,17 @@
     gap: 10px; /* Espacio entre tarjetas */
     justify-content: space-between; /* Centrar las tarjetas horizontalmente */
   }
+
+  /* Cards.module.css */
+.numberButton {
+  cursor: pointer;
+  font-size: 16px; /* Ajusta el tamaño del texto según sea necesario */
+  color: #07090c; /* Cambia el color según tu preferencia */
+  margin: 0 5px; /* Añade un espacio entre los números de página */
+}
+
+/* Cards.module.css */
+.numberButtonSelected {
+  background-color: #007bff; /* Cambia el color de fondo según tu preferencia */
+  color: #fff; /* Cambia el color del texto para que sea legible en el fondo seleccionado */
+}
