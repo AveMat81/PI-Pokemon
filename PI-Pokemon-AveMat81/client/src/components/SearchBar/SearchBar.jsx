@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemonByName } from "../../Redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () =>{
   const dispatch = useDispatch();
+  const navigate = useNavigate();
    const [nombre, setNombre] = useState('');
  
    const handleChange = (event)=>{
@@ -12,8 +14,9 @@ const SearchBar = () =>{
 
     const searchName = () =>{
       dispatch(getPokemonByName(nombre))
+      navigate('/home')
    }
- console.log(nombre)
+ 
    return (
        <div>
           <input  type='search' value={nombre} onChange={handleChange} placeholder="Buscar por nombre"/> 

@@ -20,12 +20,12 @@ const rootReducer = (state = initialState, action) => {
             return { ...state, detailPokemon: action.payload} 
 
          case GET_POKEMON_BY_NAME:
-         const nom = [...state.allPokemons]   
+         const nom = [...state.allPokemons].filter((p)=> p.nombre !== action.payload)   
                 nom.unshift(action.payload)
              return { ...state, 
                 filterPokemon: nom
             }
-            
+                    
         case ORDER:
             const pokemonOrden = [...state.filterPokemon]
             return {

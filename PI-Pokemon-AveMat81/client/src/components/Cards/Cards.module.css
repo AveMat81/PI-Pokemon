@@ -1,7 +1,7 @@
 .cardGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 columnas en cada fila */
-    gap: 10px; /* Espacio entre tarjetas */
+    gap: 12px; /* Espacio entre tarjetas */
     justify-content: space-between; /* Centrar las tarjetas horizontalmente */
   }
 

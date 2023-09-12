@@ -45,21 +45,21 @@ const Home = ()=> {
     return(
         
         <div className={styles.div}>
-            <label htmlFor="orden">Orden por ataque </label>
+            <label>Orden por ataque </label>
             <select id="orden"  onChange={handleOrder}>
                 <option value="I">Seleccionar</option>
                 <option value="A">Ascendente</option>
                 <option value="D">Desendente</option>
             </select>
 
-            <label htmlFor="nombres">Orden por nombre </label>
+            <label>Orden por nombre </label>
             <select id="nombres"  onChange={handleNombre}>
                 <option value="I">Seleccionar</option>
                 <option value="A">A-Z</option>
                 <option value="D">Z-A</option>
             </select>
 
-            <label htmlFor="tipos">Seleccionar por tipo </label> 
+            <label>Seleccionar por tipo </label> 
             <select id="tipos" onChange={handleTipos}>
              <option value="I">Seleccionar</option>
                    { types.map((tipo)=> {
@@ -69,7 +69,7 @@ const Home = ()=> {
                     })}            
             </select>
 
-            <label htmlFor="origen">Seleccionar origen data </label> 
+            <label>Seleccionar origen data </label> 
             <select id="origen" onChange={handleOrigen}>
                 <option value="I">Seleccionar</option>
                 <option value="API">API</option>
