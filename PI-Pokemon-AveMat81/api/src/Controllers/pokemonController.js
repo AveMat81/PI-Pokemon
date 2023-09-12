@@ -99,29 +99,33 @@ const getPokemonByName = async (req, res)=>{
            
          }
          return res.status(200).json(pokemon)
-        }else{
-         return res.status(404).send('Pokemon no encontrado')
         }
+        // else{
+        //  return res.status(404).send('Pokemon no encontrado')
+        // }
     } catch (error) {
         
-        res.status(500).json(error.message)
+        res.status(404).send('Pokemon no encontrado')
     }
 };
 
 
 
 const postPokemon = async (req, res) => {
-    const {tipos, nombre, imagen, vida, ataque, defensa, velocidad, altura, peso } = req.body;
+    const {tipo1, tipo2, nombre, imagen, vida, ataque, defensa, velocidad, altura, peso } = req.body;
+   const tipos = []
+   if(tipo1) tipos.push(tipo1)
+   if(tipo2) tipos.push(tipo2)
     try {
        const newPokemon = await Pokemon.create({
             nombre,
             imagen,
-            vida,
-            ataque,
-            defensa,
-            velocidad,
-            altura,
-            peso
+            vida: Number(vida),
+            ataque: Number(ataque),
+            defensa: Number(defensa),
+            velocidad: Number(velocidad),
+            altura: Number(altura),
+            peso: Number(peso)
         });
         await newPokemon.addTypes(tipos)
         return res.status(201).send('Pokémon creado exitosamente');
