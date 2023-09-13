@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
-import { getTipos } from '../../Redux/actions';
+import { getTipos, getPokemons } from '../../Redux/actions';
 
 
 
@@ -127,7 +127,7 @@ const Form = ()=> {
 
     const submitHandler = (event) => {
         event.preventDefault()
-        if(errors.nombre === "" || errors.imagen === "" || errors.vida === "" || errors.ataque === "" || errors.defensa === "" || (errors.tipo1 === "" && errors.tipo2 === "")){
+        if(errors.nombre !== "" || errors.imagen !== "" || errors.vida !== "" || errors.ataque !== "" || errors.defensa !== "" || (errors.tipo1 !== "" && errors.tipo2 !== "")){
             alert("Revise los datos ingresados")
             return
         }
@@ -145,10 +145,11 @@ const Form = ()=> {
                 tipo1: "",
                 tipo2: ""
             })
+            dispatch(getPokemons())
             const response = res.data
             alert(response)
         })
-        .catch(()=>alert("El pokemon no pudo ser creado"))
+        .catch(()=>alert("El pokemon no pudo ser creado correctamente. Vuelva a intentarlo"))
         
     }
 
@@ -242,7 +243,7 @@ const Form = ()=> {
             <div>
             <label>Seleccionar 2° tipo </label> 
             <select id="tipos" onChange={changeHandler} name='tipo2'>
-             <option value="I">Seleccionar</option>
+             <option>Seleccionar</option>
                    { types.map((tipo)=> {
                         return (
                             <option value={tipo.id}>{tipo.nombre}</option>

@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     imagen: {
       type :DataTypes.STRING,

@@ -1,10 +1,14 @@
 import Card from '../Card/Card';
 import styles from './Cards.module.css';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Cards = ()=>{
   const allPokemons = useSelector(state=>state.filterPokemon)
+
+useEffect(()=>{
+setCurrentPage(1)
+},[allPokemons])
   
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 12; 
@@ -18,6 +22,7 @@ for (let i = 1; i <= Math.ceil(allPokemons.length / pageSize); i++) {
   pageNumbers.push(i);
 }
 
+// eslint-disable-next-line no-unused-vars
 const handleClick = (number) => {
   setCurrentPage(number);
 };
@@ -34,7 +39,7 @@ const handleClick = (number) => {
                         imagen={pokemon.imagen}
                         tipos={pokemon.types.map((type) => type.nombre).join(' - ')}                                                       
                     />
-                })};
+                })}
             </div>
 
             <div >

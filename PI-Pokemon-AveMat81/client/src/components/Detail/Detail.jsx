@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPokemonById } from "../../Redux/actions";
+import { getPokemonById, clearDetail } from "../../Redux/actions";
 import styles from './Detail.module.css'
 
 const Detail = ()=> {
@@ -11,8 +11,11 @@ const Detail = ()=> {
 
 
     useEffect(() => {
-        dispatch(getPokemonById(id))
-    }, []);
+        dispatch(getPokemonById(id));
+        return () => {
+        dispatch(clearDetail())
+        };
+    }, [dispatch, id]);
 
     return(
         <div className={styles["detail-container"]}>            
