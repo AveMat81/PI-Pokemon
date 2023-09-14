@@ -18,6 +18,7 @@ const Home = ()=> {
       if(filterOrigen) dispatch(filterByOrigen(filterOrigen));
       if(filterTipos) dispatch(filterByTipos(filterTipos));
       if(ordenAtaque) dispatch(orderCardsAtaque(ordenAtaque));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch, filterOrigen, filterTipos, ordenAtaque]);
 
     const handleOrder = (event)=>{
@@ -64,7 +65,8 @@ const Home = ()=> {
                 <option value="API">API</option>
                 <option value="BDD">BDD</option>
             </select>
-
+            
+            
             <button onClick={handleClear}>Limpiar selelccion</button>
 
 

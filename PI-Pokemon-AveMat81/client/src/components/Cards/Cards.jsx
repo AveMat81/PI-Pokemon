@@ -13,9 +13,9 @@ setCurrentPage(1)
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 12; 
 
-  const indexOfLastPokemon = currentPage * pageSize;
-  const indexOfFirstPokemon = indexOfLastPokemon - pageSize;
-  const currentPokemons = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);
+  const lastPokemon = currentPage * pageSize;
+  const firstPokemon = lastPokemon - pageSize;
+  const currentPokemons = allPokemons.slice(firstPokemon, lastPokemon);
 
   const pageNumbers = [];
 for (let i = 1; i <= Math.ceil(allPokemons.length / pageSize); i++) {

@@ -13,6 +13,7 @@ const Form = ()=> {
     
     useEffect(()=>{
         if(!types.length)dispatch(getTipos())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[dispatch]);
 
     const [form, setForm] = useState({
@@ -131,6 +132,11 @@ const Form = ()=> {
             alert("Revise los datos ingresados")
             return
         }
+        
+        if(form.nombre === "" || form.imagen === "" || form.vida === "" || form.ataque === "" || form.defensa === "" || (form.tipo1 === "" && errors.tipo2 === "")){
+            alert("Los campos marcados con * son abligatorios")
+            return
+        }
         axios.post("http://localhost:3001/pokemons/",form)
         .then(res=>{
             setForm({
@@ -227,7 +233,7 @@ const Form = ()=> {
             <br />
            
             <div>
-            <label>Seleccionar 1° tipo </label> 
+            <label>* Seleccionar 1° tipo </label> 
             <select id="tipos" onChange={changeHandler} name='tipo1'>
              <option>Seleccionar</option>
                    { types.map((tipo)=> {

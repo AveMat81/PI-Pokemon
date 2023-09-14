@@ -25,7 +25,6 @@ const rootReducer = (state = initialState, action) => {
             
         case GET_POKEMON_BY_NAME:
             const nom = [...state.allPokemons].filter((p)=> p.nombre !== action.payload.nombre) 
-            console.log(action.payload.nombre)  
             nom.unshift(action.payload)
             return { 
                 ...state, 
