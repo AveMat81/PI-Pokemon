@@ -238,7 +238,7 @@ const Form = ()=> {
              <option>Seleccionar</option>
                    { types.map((tipo)=> {
                         return (
-                            <option value={tipo.id}>{tipo.nombre}</option>
+                            <option key={tipo.id} value={tipo.id}>{tipo.nombre}</option>
                         )
                     })}            
             </select>                
@@ -252,7 +252,7 @@ const Form = ()=> {
              <option>Seleccionar</option>
                    { types.map((tipo)=> {
                         return (
-                            <option value={tipo.id}>{tipo.nombre}</option>
+                            <option key={tipo.id} value={tipo.id}>{tipo.nombre}</option>
                         )
                     })}            
             </select>                
